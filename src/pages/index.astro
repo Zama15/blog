@@ -1,17 +1,24 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <main>
+    <h1>Hi <code>ヾ(^ ∇ ^)</code>, Zama here!!!</h1>
+    <section>
+      <h2>This is my Portfolio</h2>
+      <p>
+        Go checkout <a href="/about">/about</a> where I talk about me, my work, skills,
+        and experiences.
+      </p>
+    </section>
+
+    <section>
+      <h2>It is also a Blog</h2>
+      <p>
+        Go checkout <a href="/blog">/blog</a> where are my learnings, notes, and guides
+        I made for myself. I will be glad if they help you.
+      </p>
+    </section>
+  </main>
+</BaseLayout>

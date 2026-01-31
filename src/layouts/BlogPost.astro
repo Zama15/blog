@@ -1,0 +1,73 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+import { getCollection } from "astro:content";
+
+// 1. Fix the Interface
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags: string[];
+  draft: boolean;
+}
+
+// 2. Destructure the props directly
+const { title, description, date, tags, draft } = Astro.props;
+
+// 3. Fetch all posts for the Sidebar
+const learnings = await getCollection("learnings");
+const visibleLearnings = learnings.filter(
+  (post) => !post.data.draft || import.meta.env.DEV,
+);
+visibleLearnings.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const recentLearnings = visibleLearnings.slice(0, 5);
+---
+
+<BaseLayout title={title} description={description}>
+  <aside>
+    <nav>
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="/blog">All Posts</a></li>
+        <li><a href="/tags">Explore Tags</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <h2>Recent Posts</h2>
+      <ul>
+        {
+          recentLearnings.map((post) => (
+            <li>
+              {post.data.draft && <mark>DRAFT</mark>}
+
+              <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </aside>
+  <main>
+    <article>
+      <header>
+        {draft && <mark>DRAFT CONTENT</mark>}
+
+        <h1>{title}</h1>
+
+        <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
+
+        <ul>
+          {
+            tags.map((tag) => (
+              <li>
+                <a href={`/tags/${tag}`}>#{tag}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </header>
+      <slot />
+    </article>
+  </main>
+</BaseLayout>

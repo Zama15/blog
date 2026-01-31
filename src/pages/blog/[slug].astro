@@ -1,0 +1,28 @@
+---
+import BlogPost from "../../layouts/BlogPost.astro";
+
+import { getCollection, render } from "astro:content";
+
+// 1. Generate Static Paths
+export async function getStaticPaths() {
+  const learnings = await getCollection("learnings");
+  const visibleLearnings = learnings.filter(
+    (post) => !post.data.draft || import.meta.env.DEV,
+  );
+
+  return visibleLearnings.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+// 2. Get the specific post data for this URL
+const { post } = Astro.props;
+
+// 3. Render the Markdown content
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+  <Content />
+</BlogPost>

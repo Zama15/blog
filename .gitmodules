@@ -1,0 +1,3 @@
+[submodule "src/content/learnings"]
+	path = src/content/learnings
+	url = git-zama:Zama15/Zama15.git
