@@ -1,0 +1,212 @@
+@use "sass:map";
+@use "../abstracts" as v;
+@use "../vendors/bootstrap" as bs;
+
+// Define chart colors once to avoid repetition
+$chart-palette: (
+  1: bs.$indigo,
+  2: bs.$yellow,
+  3: bs.$teal,
+  4: bs.$blue,
+);
+
+// --- ANIMATIONS ---
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes growChart {
+  from {
+    opacity: 0;
+    stroke-width: 0;
+  }
+  to {
+    opacity: 1;
+    stroke-width: 10;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.stats-card {
+  animation: fadeIn 0.5s ease-out forwards;
+
+  // --- 1. Base Structure & Light Theme (Default) ---
+  &__bg {
+    fill: bs.$white;
+    stroke: bs.$gray-200;
+    stroke-width: 1;
+  }
+
+  &__divider {
+    stroke: bs.$gray-200;
+    stroke-width: 1;
+  }
+
+  &__divider {
+    stroke: bs.$gray-200;
+    stroke-width: 1;
+    // Animate the line drawing
+    stroke-dasharray: 450;
+    stroke-dashoffset: 450;
+    animation: drawLine 1s ease-out 0.2s forwards;
+  }
+
+  // Grouping shared text fills for efficiency
+  &__domain,
+  &__title,
+  &__label,
+  &__value,
+  &__chart-title,
+  &__legend-text,
+  &__footer {
+    fill: bs.$gray-900;
+  }
+
+  // --- Header Animations ---
+  &__title,
+  &__domain {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  // Typography Specifics
+  &__domain {
+    font-size: bs.$font-size-base * 0.75;
+    font-family: bs.$font-family-code;
+    animation-delay: 0.1s;
+  }
+
+  &__title {
+    font-size: bs.$font-size-lg;
+    font-weight: bs.$font-weight-bold;
+  }
+
+  &__label,
+  &__chart-title {
+    font-weight: bs.$font-weight-semibold;
+  }
+
+  &__chart-title {
+    font-size: bs.$font-size-sm;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.4s forwards;
+  }
+
+  &__legend-text {
+    font-size: bs.$font-size-base * 0.7;
+  }
+
+  &__footer {
+    font-family: bs.$font-family-code;
+    font-size: bs.$font-size-base * 0.625;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.5s forwards;
+  }
+
+  &__value--highlight {
+    font-family: bs.$font-family-code;
+    font-size: bs.$font-size-sm;
+    fill: map.get(v.$catppuccin-latte-code, "color");
+  }
+
+  // --- LEFT COLUMN ANIMATION LOOP ---
+  &__metric-row {
+    // 1. Remove animation/opacity from the Group (<g>) itself.
+    // This preserves the SVG 'transform="translate(x, y)"' attribute.
+
+    // 2. Target the children (<text>) for the animation.
+    // They will move relative to the group's position.
+    & > text {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    // 3. Apply the Stagger Delay
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        & > text {
+          animation-delay: 0.3s + ($i * 0.1s);
+        }
+      }
+    }
+  }
+
+  // --- 2. Dynamic Chart Colors (Loop) ---
+  &__chart-segment {
+    fill: none;
+    stroke-width: 10;
+
+    opacity: 0;
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: growChart 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    @each $index, $color in $chart-palette {
+      &--#{$index} {
+        stroke: $color;
+        animation-delay: 0.5s + ($index * 0.15s);
+      }
+    }
+  }
+
+  &__legend-marker,
+  &__legend-text {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+
+    @each $index, $color in $chart-palette {
+      &--#{$index} {
+        fill: $color;
+        animation-delay: 0.8s + ($index * 0.1s);
+      }
+    }
+  }
+
+  // --- 3. Dark Theme Overrides ---
+  @include bs.color-scheme(dark) {
+    &__bg {
+      fill: bs.$gray-900;
+      stroke: bs.$gray-700;
+    }
+
+    &__divider {
+      stroke: bs.$gray-700;
+    }
+
+    // Batch override text colors
+    &__domain,
+    &__title,
+    &__label,
+    &__value,
+    &__chart-title,
+    &__legend-text,
+    &__footer {
+      fill: bs.$gray-300;
+    }
+
+    &__value--highlight {
+      fill: map.get(v.$catppuccin-macchiato-code, "color");
+    }
+  }
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

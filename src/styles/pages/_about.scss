@@ -1,0 +1,14 @@
+@use "../vendors/bootstrap" as bs;
+
+.about {
+  &-me {
+    aside {
+      width: 100%;
+      max-width: 400px;
+
+      @include bs.media-breakpoint-up(lg) {
+        width: 300px;
+      }
+    }
+  }
+}

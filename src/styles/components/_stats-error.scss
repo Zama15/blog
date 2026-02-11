@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "../abstracts" as v;
+@use "../vendors/bootstrap" as bs;
+
+.stats-error {
+  // --- 1. Base Structure & Light Theme (Default) ---
+  &__bg {
+    fill: bs.$danger-bg-subtle;
+    stroke: bs.$danger-border-subtle;
+    stroke-width: 5;
+  }
+
+  &__title,
+  &__message {
+    fill: bs.$danger-text-emphasis;
+  }
+
+  // Typography Specifics
+  &__title {
+    font-size: bs.$font-size-lg;
+    font-weight: bs.$font-weight-bold;
+    font-family: bs.$font-family-monospace;
+  }
+
+  &__message {
+    font-size: bs.$font-size-sm;
+    font-family: bs.$font-family-monospace;
+  }
+
+  // // --- 3. Dark Theme Overrides ---
+  @include bs.color-scheme(dark) {
+    &__bg {
+      fill: bs.$danger-bg-subtle-dark;
+      stroke: bs.$danger-border-subtle-dark;
+      stroke-width: 5;
+    }
+
+    &__title,
+    &__message {
+      fill: bs.$danger-text-emphasis-dark;
+    }
+  }
+}

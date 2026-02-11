@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "../abstracts" as v;
+@use "../vendors/bootstrap" as bs;
+
+pre.astro-code,
+pre.astro-code span,
+:not(pre) > code {
+  border-radius: bs.$border-radius;
+}
+
+// BLOCK CODE
+pre.astro-code {
+  padding: map.get(bs.$spacers, 3);
+  overflow-x: auto;
+
+  &,
+  span {
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
+
+  @include bs.color-scheme(dark) {
+    &,
+    span {
+      background-color: var(--shiki-dark-bg) !important;
+      color: var(--shiki-dark) !important;
+
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+  }
+}
+
+// INLINE CODE
+:not(pre) > code {
+  white-space: nowrap;
+
+  padding: map.get(bs.$spacers, 1) map.get(bs.$spacers, 2);
+
+  background-color: map.get(v.$catppuccin-latte-code, "bg");
+  color: map.get(v.$catppuccin-latte-code, "color");
+
+  @media (prefers-color-scheme: dark) {
+    background-color: map.get(v.$catppuccin-macchiato-code, "bg");
+    color: map.get(v.$catppuccin-macchiato-code, "color");
+  }
+}

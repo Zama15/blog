@@ -1,0 +1,134 @@
+// src/styles/components/_alerts.scss
+@use "sass:map";
+@use "../abstracts" as v;
+@use "../vendors/bootstrap" as bs;
+
+$alert-themes: (
+  "blue": (
+    "accent": bs.$blue-700,
+    "accent-dark": bs.$blue-500,
+    "surface": bs.$blue-200,
+    "surface-dark": bs.$blue-900,
+  ),
+  "teal": (
+    "accent": bs.$teal-700,
+    "accent-dark": bs.$teal-500,
+    "surface": bs.$teal-200,
+    "surface-dark": bs.$teal-900,
+  ),
+  "indigo": (
+    "accent": bs.$indigo-700,
+    "accent-dark": bs.$indigo-400,
+    "surface": bs.$indigo-200,
+    "surface-dark": bs.$indigo-900,
+  ),
+  "yellow": (
+    "accent": bs.$yellow-700,
+    "accent-dark": bs.$yellow-500,
+    "surface": bs.$yellow-200,
+    "surface-dark": bs.$yellow-900,
+  ),
+  "red": (
+    "accent": bs.$red-700,
+    "accent-dark": bs.$red-500,
+    "surface": bs.$red-200,
+    "surface-dark": bs.$red-900,
+  ),
+  "gray": (
+    "accent": bs.$gray-700,
+    "accent-dark": bs.$gray-500,
+    "surface": bs.$gray-200,
+    "surface-dark": bs.$gray-900,
+  ),
+);
+
+@mixin apply-alert-theme($color-name) {
+  @if not map.has-key($alert-themes, $color-name) {
+    @error "Alert theme '#{$color-name}' not found.";
+  }
+
+  $theme: map.get($alert-themes, $color-name);
+
+  // Extract values
+  $accent: map.get($theme, "accent");
+  $accent-dark: map.get($theme, "accent-dark");
+  $surface: map.get($theme, "surface");
+  $surface-dark: map.get($theme, "surface-dark");
+
+  // --- Define Rules ---
+  border-color: $accent;
+  background-color: $surface;
+
+  .markdown-alert-title {
+    color: $accent;
+  }
+
+  @include bs.color-scheme(dark) {
+    border-color: $accent-dark;
+    background-color: $surface-dark;
+
+    .markdown-alert-title {
+      color: $accent-dark;
+    }
+  }
+}
+
+// ==== GLOBAL STYLE ====
+.markdown-alert,
+blockquote {
+  margin: map.get(bs.$spacers, 4) 0;
+  padding: map.get(bs.$spacers, 3) map.get(bs.$spacers, 4);
+  border-left: map.get(bs.$border-widths, 4) bs.$border-style;
+  border-radius: 0 bs.$border-radius bs.$border-radius 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.markdown-alert-title {
+  display: flex;
+  align-items: center;
+  font-weight: bs.$font-weight-semibold;
+  margin-bottom: map.get(bs.$spacers, 2);
+  text-transform: uppercase;
+
+  svg {
+    margin-right: map.get(bs.$spacers, 1);
+    fill: currentColor;
+  }
+}
+
+// ==== COLOR ====
+blockquote {
+  font-style: italic;
+
+  @include apply-alert-theme("gray");
+}
+
+.markdown-alert {
+  // [!NOTE]
+  &-note {
+    @include apply-alert-theme("blue");
+  }
+
+  // [!TIP]
+  &-tip {
+    @include apply-alert-theme("teal");
+  }
+
+  // [!IMPORTANT]
+  &-important {
+    @include apply-alert-theme("indigo");
+  }
+
+  // [!WARNING]
+  &-warning {
+    @include apply-alert-theme("yellow");
+  }
+
+  // [!CAUTION]
+  &-caution {
+    @include apply-alert-theme("red");
+  }
+}
