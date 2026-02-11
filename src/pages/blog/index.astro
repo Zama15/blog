@@ -1,44 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
 
-import { getCollection } from "astro:content";
+import { getAllPosts } from "../../lib/data";
 
-const learnings = await getCollection("learnings");
-const visibleLearnings = learnings.filter(
-  (post) => !post.data.draft || import.meta.env.DEV,
-);
-visibleLearnings.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = await getAllPosts();
 ---
 
 <BaseLayout>
-  <main>
-    <header>
-      <h1>All Posts</h1>
+  <main class="container">
+    <h1>All Posts</h1>
+    <hr />
 
-      <nav>
-        <a href="/tags">Explore Tags</a>
-      </nav>
-    </header>
+    <nav class="navbar navbar-expand">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item ps-3">
+          <a href="/tags">Explore by tags</a>
+        </li>
+        <li class="nav-item ps-3">
+          <a href="/blog/daily"> Random Post </a>
+        </li>
+      </ul>
+    </nav>
 
-    <ul>
+    <ul class="navbar-nav w-100">
       {
-        visibleLearnings.map((post) => (
-          <li>
-            {post.data.draft && <mark>DRAFT</mark>}
-
-            <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
-
-            <time datetime={post.data.date.toISOString()}>
-              {post.data.date.toLocaleDateString()}
-            </time>
-
-            <ul>
-              {post.data.tags.map((tag) => (
-                <li>
-                  <a href={`/tags/${tag}`}>#{tag}</a>
-                </li>
-              ))}
-            </ul>
+        posts.map((post) => (
+          <li class="nav-item p-2 mb-4">
+            <ArticleCard post={post} />
           </li>
         ))
       }

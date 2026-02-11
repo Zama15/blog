@@ -5,6 +5,8 @@ import Footer from "../components/Footer.astro";
 
 import { SITE_TITLE, SITE_DESCRIPTION } from "../lib/constants";
 
+import "../styles/main.scss";
+
 const {
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
@@ -18,8 +20,8 @@ const {
     <BaseHead title={title} description={description} image={image} />
   </head>
   <body>
-    <header><Header /></header>
+    <Header />
     <slot />
-    <footer><Footer /></footer>
+    <Footer />
   </body>
 </html>

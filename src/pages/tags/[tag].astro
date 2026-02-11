@@ -1,54 +1,48 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
 
-import { getCollection } from "astro:content";
+import { getAllTags, getPostsByTag } from "../../lib/data";
 
-// 1. Generate Static Paths for every unique tag
 export async function getStaticPaths() {
-  const learnings = await getCollection("learnings");
-  const visibleLearnings = learnings.filter(
-    (post) => !post.data.draft || import.meta.env.DEV,
+  const tags = await getAllTags();
+
+  return Promise.all(
+    tags.map(async (tag) => {
+      const posts = await getPostsByTag(tag);
+      return {
+        params: { tag },
+        props: { posts },
+      };
+    }),
   );
-  visibleLearnings.sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-  );
-
-  // Get unique tags (see index.astro)
-  const uniqueTags = [
-    ...new Set(visibleLearnings.map((post) => post.data.tags).flat()),
-  ];
-
-  // Return a path for each tag
-  return uniqueTags.map((tag) => {
-    // Filter posts that include this specific tag
-    const filteredPosts = visibleLearnings.filter((post) =>
-      post.data.tags?.includes(tag),
-    );
-
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<BaseLayout title={`Posts tagged with ${tag}`}>
-  <main>
-    <header>
-      <h1><code>#{tag}</code> Posts</h1>
-    </header>
+<BaseLayout>
+  <main class="container">
+    <h1><code>#{tag}</code> Posts</h1>
+    <hr />
 
-    <ul>
+    <nav class="navbar navbar-expand">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item ps-3">
+          <a href="/tags">Explore by tags</a>
+        </li>
+        <li class="nav-item ps-3">
+          <a href="/blog/daily"> Random Post </a>
+        </li>
+      </ul>
+    </nav>
+
+    <ul class="navbar-nav w-100">
       {
         posts.map((post) => (
-          <li>
-            {post.data.draft && <mark>DRAFT</mark>}
-
-            <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+          <li class="nav-item p-2 mb-4">
+            <ArticleCard post={post} />
           </li>
         ))
       }

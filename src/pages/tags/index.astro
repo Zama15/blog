@@ -1,33 +1,26 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllTags } from "../../lib/data";
 
-import { getCollection } from "astro:content";
-
-const learnings = await getCollection("learnings");
-const visibleLearnings = learnings.filter(
-  (post) => !post.data.draft || import.meta.env.DEV,
-);
-visibleLearnings.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-// Logic:
-// 1. Make an array of all the tags array.
-// 2. Flatten the array of arrays into one big list of tags.
-// 3. Create a 'Set' to remove duplicates.
-// 4. Convert back to an array.
-const tags = [
-  ...new Set(visibleLearnings.map((post) => post.data.tags).flat()),
-];
+const allTags = await getAllTags();
 ---
 
 <BaseLayout>
-  <main>
-    <header>
-      <h1>Tags</h1>
-    </header>
+  <main class="container">
+    <h1>Tags</h1>
+    <hr />
 
-    <ul>
+    <nav class="navbar navbar-expand">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item ps-3">
+          <a href="/blog/daily"> Random Post </a>
+        </li>
+      </ul>
+    </nav>
+
+    <ul class="list-unstyled d-flex flex-wrap gap-3">
       {
-        tags.map((tag) => (
+        allTags.map((tag) => (
           <li>
             <a href={`/tags/${tag}`}>#{tag}</a>
           </li>

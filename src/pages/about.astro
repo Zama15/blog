@@ -3,26 +3,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <main>
+  <main class="container">
     <h1>About me</h1>
 
-    <section>
-      <h2>Who am I?</h2>
-      <figure>
-        <a
-          href="https://github.com/zama15"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="https://github.com/zama15.png"
-            alt="Profile picture of Zama"
-          />
-        </a>
-        <figcaption>
-          <small>My GitHub Avatar (Click to visit)</small>
-        </figcaption>
-      </figure>
+    <hr />
+
+    <section class="about-me">
+      <aside class="border float-lg-end mx-auto mb-4 ms-lg-4">
+        <div class="text-center p-2 pb-0">
+          <strong>Alejandro Jeronimo Azamar</strong>
+        </div>
+
+        <div class="p-3">
+          <figure>
+            <img
+              class="img-fluid text-center"
+              src="https://github.com/zama15.png"
+              alt="GitHub Profile picture of Zama"
+            />
+
+            <figcaption class="mt-2 text-muted text-center">
+              <small>My GitHub Avatar</small>
+            </figcaption>
+          </figure>
+
+          <dl class="row mb-0">
+            <dt class="col-4">Alias</dt>
+            <dd class="col-8">Zama</dd>
+
+            <dt class="col-4">Nationality</dt>
+            <dd class="col-8">Mexican</dd>
+
+            <dt class="col-4">Education</dt>
+            <dd class="col-8">Universidad de Colima</dd>
+
+            <dt class="col-4">Notable work</dt>
+            <dd class="col-8">
+              <a href="#university-repository">University Repository</a>
+            </dd>
+          </dl>
+        </div>
+      </aside>
+
       <p>
         I am Alejandro Jeronimo Azamar. A usual alias I use is <strong
           >Zama</strong
@@ -33,6 +55,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <section>
       <h2>Education</h2>
+      <hr />
+
       <p>
         I began studying <strong>Software Engineering</strong> in 2022. Beyond my
         formal education, I completed a semester-long <strong
@@ -62,7 +86,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
 
     <section>
-      <h2>Projects (Most Recent)</h2>
+      <h2>Most Recent Projects</h2>
+      <hr />
+
       <p>
         Most of these projects were for my college coursework, but I loved
         working on all of them. I <strong
@@ -71,7 +97,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         skills necessary for this field.
       </p>
 
-      <h3>University Repository</h3>
+      <h3 id="university-repository">University Repository</h3>
       <p>
         A centralized web/mobile app where students can manage their projects
         (active, finished, or in-progress) and professors can oversee them using
@@ -99,6 +125,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <section>
       <h2>Skills</h2>
+      <hr />
+
       <p>
         Here are the skills I am most proud of, gathered throughout my education
         and beyond. I am confident I can solve any problem you give me with
