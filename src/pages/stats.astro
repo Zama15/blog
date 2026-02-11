@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <!-- <main class="container d-flex justify-content-center"> -->
+  <main class="container">
+    <div class="row">
+      <img
+        src="/api/stats"
+        alt="Real-time Blog Statistics including total posts, topics, and last update time."
+        class="col-12 col-md-6 mx-auto"
+      />
+      <p class="col-12 mt-3 text-center text-muted small">
+        Live data fetched from <a href="/api/stats" target="_blank"
+          >/api/stats</a
+        >
+      </p>
+    </div>
+  </main>
+</BaseLayout>
