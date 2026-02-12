@@ -1,0 +1,34 @@
+---
+import ErrorPage from "../components/ErrorPage.astro";
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+
+const isAcknowledgedError = error instanceof Error;
+---
+
+<ErrorPage
+  code="500"
+  title="Internal Server Error"
+  message="Something went wrong on our end. We are working to fix it."
+  showTrace={import.meta.env.DEV}
+>
+  {
+    isAcknowledgedError ? (
+      <>
+        <div class="fw-bold">{error.message}</div>
+
+        {error.stack && (
+          <div class="small" style="white-space: pre-wrap;">
+            {error.stack}
+          </div>
+        )}
+      </>
+    ) : (
+      "Unknown error occurred."
+    )
+  }
+</ErrorPage>

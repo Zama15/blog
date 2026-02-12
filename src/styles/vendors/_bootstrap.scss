@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../abstracts/variables" as v;
 
 // Configuration
@@ -18,6 +19,26 @@ $color-mode-type: v.$color-mode-type;
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
+
+// Modify Utilities
+$utilities: map.merge(
+  $utilities,
+  (
+    "min-viewport-height": map.merge(
+        map.get($utilities, "min-viewport-height"),
+        (
+          values: map.merge(
+              map.get(map.get($utilities, "min-viewport-height"), "values"),
+              (
+                25: 25vh,
+                50: 50vh,
+                75: 75vh,
+              )
+            ),
+        )
+      ),
+  )
+);
 
 // Layout & components
 @import "bootstrap/scss/root";
