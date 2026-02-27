@@ -3,18 +3,55 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <main class="container">
-    <h1>About me</h1>
+  <main class="container pb-4">
+    <div class="pb-2 mb-2">
+      <h1>About me</h1>
 
-    <hr />
+      <hr />
+    </div>
 
-    <section class="about-me">
-      <aside class="border float-lg-end mx-auto mb-4 ms-lg-4">
-        <div class="text-center p-2 pb-0">
-          <strong>Alejandro Jeronimo Azamar</strong>
+    <section class="row">
+      <div class="col-lg-9 order-2 order-lg-1">
+        <p class="lead">
+          I am Alejandro Jeronimo Azamar. A usual alias I use is <strong
+            >Zama</strong
+          >, which is simply a shortened version of my last name.
+        </p>
+        <p>
+          I began studying <strong>Software Engineering</strong> in 2022. Beyond my
+          formal education, I completed a semester-long <strong
+            >Ruby on Rails Web Developer</strong
+          > bootcamp in 2023.
+        </p>
+
+        <div class="m-2 my-4 p-3 border">
+          <h3>The Learning Process</h3>
+          <p class="text-muted">
+            I often pass hours researching things I already know, thinking, <em
+              >"Maybe I am doing it wrong?"</em
+            > or <em>"I should double-check this..."</em> This curiosity leads me
+            to deepen my knowledge, learn new things, and bring out the best in my
+            work.
+          </p>
         </div>
 
-        <div class="p-3">
+        <p>
+          I started this journey thinking, <em
+            >"The career name sounds so cool, complex, and meaningful—I really
+            want to study this!"</em
+          >
+          Coming from a technical accounting background, I barely knew how to turn
+          on a machine. My first college assignment was to "Make a game with the PyGame
+          framework based on an SDG." So I was like <em>"..."</em>
+        </p>
+      </div>
+
+      <aside class="col-lg-3 order-1 order-lg-2">
+        <div class="m-2 p-3 pt-0 border">
+          <p class="text-center my-2">
+            <strong>Alejandro Jeronimo Azamar</strong>
+          </p>
+
           <figure>
             <img
               class="img-fluid text-center"
@@ -28,68 +65,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </figure>
 
           <dl class="row mb-0">
-            <dt class="col-4">Alias</dt>
-            <dd class="col-8">Zama</dd>
+            <dt class="col-5">Nationality</dt>
+            <dd class="col-7">Mexican</dd>
 
-            <dt class="col-4">Nationality</dt>
-            <dd class="col-8">Mexican</dd>
-
-            <dt class="col-4">Education</dt>
-            <dd class="col-8">Universidad de Colima</dd>
-
-            <dt class="col-4">Notable work</dt>
-            <dd class="col-8">
-              <a href="#university-repository">University Repository</a>
-            </dd>
+            <dt class="col-5">Education</dt>
+            <dd class="col-7">Universidad de Colima</dd>
           </dl>
         </div>
       </aside>
-
-      <p>
-        I am Alejandro Jeronimo Azamar. A usual alias I use is <strong
-          >Zama</strong
-        >, which doesn't have a deep meaning; it is just a shortened version of
-        my last name.
-      </p>
     </section>
 
-    <section>
-      <h2>Education</h2>
-      <hr />
+    <section class="mb-4">
+      <div class="pb-2 mb-2">
+        <h2>Most Recent Projects</h2>
 
-      <p>
-        I began studying <strong>Software Engineering</strong> in 2022. Beyond my
-        formal education, I completed a semester-long <strong
-          >Ruby on Rails Web Developer</strong
-        >
-        bootcamp in 2023.
-      </p>
+        <hr />
+      </div>
 
-      <h3>How did I start?</h3>
-      <p>
-        I started this journey thinking, <em
-          >"The career name sounds so cool, complex, and meaningful—I really
-          want to study this!"</em
-        >
-        Coming from a technical accounting background, I barely knew how to turn on
-        a machine. My first college assignment was to "Make a game with the PyGame
-        framework based on an SDG."
-      </p>
-
-      <h3>How is it going?</h3>
-      <p>
-        I often pass hours researching things I already know, thinking, "Maybe I
-        am doing it wrong?" or "I should double-check this..." This curiosity
-        leads me to deepen my knowledge, learn new things, and bring out the
-        best in my work.
-      </p>
-    </section>
-
-    <section>
-      <h2>Most Recent Projects</h2>
-      <hr />
-
-      <p>
+      <p class="text-muted mb-4">
         Most of these projects were for my college coursework, but I loved
         working on all of them. I <strong
           >never worked with the same team twice</strong
@@ -97,79 +90,97 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         skills necessary for this field.
       </p>
 
-      <h3 id="university-repository">University Repository</h3>
-      <p>
-        A centralized web/mobile app where students can manage their projects
-        (active, finished, or in-progress) and professors can oversee them using
-        an RBAC security methodology. I was in charge of the backend (API),
-        architecture design, and database management.
-      </p>
+      <div class="row row-cols-1 row-cols-md-3">
+        <div class="col">
+          <h3>University Repository</h3>
+          <p class="small">
+            A centralized web/mobile app where students can manage their
+            projects and professors can oversee them using an RBAC security
+            methodology. I was in charge of the backend, architecture design,
+            and database management.
+          </p>
 
-      <h3>Android SPA Mobile Application</h3>
-      <p>
-        A mobile app for regional spas allowing establishments to register their
-        menus and users to schedule appointments. It supported real-time
-        calendars and map visualization. I acted as a full-stack developer,
-        designing views, backend logic, and cloud database management.
-      </p>
+          <ul class="list-unstyled d-flex flex-wrap gap-3 small">
+            <li>Backend</li>
+            <li>Architecture</li>
+            <li>DB Management</li>
+          </ul>
+        </div>
 
-      <h3>Web Forum Using Custom PHP Framework</h3>
-      <p>
-        The goal was to create a custom Framework for our personal use instead
-        of starting from scratch. We built a forum where users can manage posts
-        and admins can oversee content. Using the software management, best
-        practices, and methodologies I learned in my bootcamp, I led my team
-        through the entire process.
-      </p>
+        <div class="col">
+          <h3>Android SPA App</h3>
+          <p class="small">
+            A mobile app for spas to register their menus and users to schedule
+            appointments. Supported real-time calendars and map visualization. I
+            acted as a full-stack developer, designing views, backend logic, and
+            cloud database management.
+          </p>
+
+          <ul class="list-unstyled d-flex flex-wrap gap-3 small">
+            <li>Full-Stack</li>
+            <li>UI/UX</li>
+            <li>Cloud DB</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3 class="h5 card-title">Custom PHP Framework</h3>
+          <p class="small">
+            Custom Framework from scratch. Built with it a forum where users
+            manage posts and admins oversee content. I led my team through the
+            entire process using software management, best practices, and
+            methodologies.
+          </p>
+
+          <ul class="list-unstyled d-flex flex-wrap gap-3 small">
+            <li>PHP</li>
+            <li>Leadership</li>
+            <li>Best Practices</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>Skills</h2>
-      <hr />
+      <div class="pb-2 mb-2">
+        <h2>Skills & Tools</h2>
 
-      <p>
-        Here are the skills I am most proud of, gathered throughout my education
-        and beyond. I am confident I can solve any problem you give me with
-        these tools.
-      </p>
+        <hr />
+      </div>
 
-      <h3>Technologies</h3>
+      <div class="row">
+        <div class="col-md-8">
+          <h3>Technologies</h3>
 
-      <h4>Linux</h4>
-      <p>
-        My most precious skill. It opened a new world to me and forged many of
-        my current principles. I learned by installing different distros,
-        managing servers, and writing scripts. It remains one of my favorite
-        hobbies.
-      </p>
+          <ul class="list-unstyled mt-3 ms-2">
+            <li class="p-2">
+              <strong>Linux:</strong> Learned by installing different distros, managing
+              servers, and writing scripts. One of my favorite hobbies.
+            </li>
+            <li class="p-2">
+              <strong>Git:</strong> Inspired by highly proficient peers, I pushed
+              myself to make version control one of my most robust capabilities.
+            </li>
+            <li class="p-2">
+              <strong>Documentation:</strong> I believe strong, clear documentation
+              allows anyone to understand a project without dive too deeply into the
+              code.
+            </li>
+          </ul>
+        </div>
 
-      <h4>Git</h4>
-      <p>
-        During my bootcamp, I met many people proficient in Git. I was so
-        impressed and inspired that I forced myself to make it one of my most
-        robust skills.
-      </p>
+        <div class="col-md-4">
+          <h3>Languages</h3>
 
-      <h4>Documentation</h4>
-      <p>
-        I constantly study the best ways to document software. I believe strong
-        documentation allows anyone to understand a project without needing to
-        dive too deeply into the code.
-      </p>
+          <dl class="row mt-3 ms-2">
+            <dt class="col-4 p-2">Spanish</dt>
+            <dd class="col-8 p-2">Native</dd>
 
-      <h3>Languages</h3>
-
-      <h4>Spanish</h4>
-      <p>
-        My native language. Even so, I sometimes struggle to communicate simple
-        ideas!
-      </p>
-
-      <h4>English</h4>
-      <p>
-        B2 level (Cambridge Assessment). I struggle with pronunciation, but I
-        believe my reading comprehension is near C1.
-      </p>
+            <dt class="col-4 p-2">English</dt>
+            <dd class="col-8 p-2">B2 (Cambridge)</dd>
+          </dl>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>
