@@ -2,12 +2,19 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 
+import { ROUTES } from "../../lib/constants";
 import { getAllPosts } from "../../lib/data";
 
 const posts = await getAllPosts();
+
+const title = "All Posts: Complete Learning Entries";
+const description =
+  "Browse collection of learnings. Filter posts by topic tags or discover new insights with a random post.";
+const keywords =
+  "technical blog archive, read technical posts, programming learnings, software development blog, explore articles by tags, markdown tech tutorials, coding insights";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} keywords={keywords}>
   <main class="container">
     <h1>All Posts</h1>
     <hr />
@@ -15,10 +22,10 @@ const posts = await getAllPosts();
     <nav class="navbar navbar-expand">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ps-3">
-          <a href="/tags">Explore by tags</a>
+          <a href={ROUTES.TAGS}>Explore by tags</a>
         </li>
         <li class="nav-item ps-3">
-          <a href="/blog/daily"> Random Post </a>
+          <a href={ROUTES.BLOG_DAILY}> Random Post </a>
         </li>
       </ul>
     </nav>

@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import PostSidebar from "../components/PostSidebar.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
+import { ROUTES } from "../lib/constants";
 import type { MarkdownHeading } from "astro";
 
 interface Props {
@@ -10,14 +11,16 @@ interface Props {
   description: string;
   date: Date;
   tags: string[];
+  keywords: string;
   draft: boolean;
   headings: MarkdownHeading[];
 }
 
-const { title, description, date, tags, draft, headings } = Astro.props;
+const { title, description, date, tags, keywords, draft, headings } =
+  Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} keywords={keywords}>
   <div class="container">
     <div class="row">
       <main class="col-lg-8">
@@ -45,7 +48,7 @@ const { title, description, date, tags, draft, headings } = Astro.props;
               {
                 tags.map((tag) => (
                   <li class="list-inline-item pe-3">
-                    <a href={`/tags/${tag}`}>#{tag}</a>
+                    <a href={`${ROUTES.TAGS}/${tag}`}>#{tag}</a>
                   </li>
                 ))
               }

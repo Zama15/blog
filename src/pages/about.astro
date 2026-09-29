@@ -1,186 +1,203 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { ROUTES } from "../lib/constants";
+
+const timeline = [
+  {
+    role: "Developer Jr",
+    organization: "EVCON Energy",
+    dates: "August 2026 - Present",
+    description:
+      "Developing EV charging app, energy management platform, and internal tools with React, NestJS, AWS.",
+  },
+  {
+    role: "Developer Intern",
+    organization: "EVCON Energy",
+    dates: "February 2026 - July 2026",
+    description:
+      "Built error-handling modules, serverless migration, IAM permissions, and dual-write provisioning with NestJS and AWS.",
+  },
+  {
+    role: "Web Development Certification",
+    organization: "BrightCoders",
+    dates: "November 2023 - May 2024",
+    description:
+      "Intensive certification covering Ruby, version control, and professional soft skills for web development.",
+  },
+  {
+    role: "Software Engineering Student",
+    organization: "Universidad de Colima",
+    dates: "August 2022 - June 2026",
+    description:
+      "Studying software architecture, databases, algorithms, and systems engineering with hands-on capstone projects.",
+  },
+];
+
+const projects = [
+  {
+    title: "University of Colima Repository",
+    description:
+      "Layered architecture (Domain/Application/Infrastructure) with PostgreSQL and Prisma ORM, using migrations and transactions for data consistency.",
+    tags: ["Backend", "Architecture", "PostgreSQL"],
+    url: "https://github.com/ReUC-Team/ReUC",
+  },
+  {
+    title: "Augmented Reality Game",
+    description:
+      "Educational AR app for high school students using Unity, Vuforia tracking, and Firebase Auth for adaptive learning.",
+    tags: ["Unity", "AR/Vuforia", "C#"],
+    url: "https://github.com/Quimex-AR/Quimex-AR",
+  },
+  {
+    title: "Android SPA Mobile Application",
+    description:
+      "Spa booking prototype built with Kotlin, MVVM architecture, and Google Maps for location and scheduling features.",
+    tags: ["Kotlin", "MVVM", "Mobile"],
+    url: "https://github.com/WolfkarlX/SpaTi",
+  },
+  {
+    title: "Custom PHP Framework",
+    description:
+      "Rails-inspired MVC framework in vanilla PHP, powering a forum with a custom ORM and query builder.",
+    tags: ["PHP", "MVC", "Custom ORM"],
+    url: "https://github.com/AngelDiaz591/PI4_Foro_Web",
+  },
+];
+
+const title = "Alejandro Jeronimo Azamar | Software Engineer Portfolio";
+const description =
+  "Explore the portfolio and career trajectory of Alejandro Jeronimo Azamar (Zama), a Software Engineer specializing in backend architecture, web development, and cloud solutions.";
+const keywords =
+  "Alejandro Jeronimo Azamar, Zama, Software Engineer, Web Developer, Backend Development, NestJS, React, AWS, PostgreSQL, Portfolio, Tech Trajectory, Colima";
 ---
 
-<BaseLayout>
-  <main class="container pb-4">
-    <div class="pb-2 mb-2">
-      <h1>About me</h1>
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <main class="container">
+    <header class="d-flex py-5">
+      <div class="m-auto">
+        <h1 class="mb-0 mb-2 mb-sm-0">Alejandro Jeronimo Azamar</h1>
+
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
+        >
+          <a
+            href={ROUTES.ABOUT_RESUME}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="small mb-2 mb-sm-0"
+            aria-label="View and download my Resume in PDF format"
+          >
+            View Resume
+            <i class="bi bi-file-earmark-pdf ms-1"></i>
+          </a>
+
+          <p class="font-monospace mb-0">Software Engineer</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="py-5">
+      <h2>Trajectory</h2>
+      <hr />
+
+      <ol class="timeline list-unstyled ms-2">
+        {
+          timeline.map((item) => (
+            <li class="timeline-item position-relative ps-4 ps-md-5 pb-5 border-start">
+              <article class="row">
+                <div class="col-md-4 col-lg-3 mb-3 mb-md-0">
+                  <p class="small mb-0">
+                    <time class="d-block fw-medium">{item.dates}</time>
+                    <span class="text-muted">{item.organization}</span>
+                  </p>
+                </div>
+
+                <div class="col-md-8 col-lg-7">
+                  <header>
+                    <h3>{item.role}</h3>
+                  </header>
+                  <p class="mb-0">{item.description}</p>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="py-5">
+      <h2>Featured Work</h2>
 
       <hr />
-    </div>
 
-    <section class="row">
-      <div class="col-lg-9 order-2 order-lg-1">
-        <p class="lead">
-          I am Alejandro Jeronimo Azamar. A usual alias I use is <strong
-            >Zama</strong
-          >, which is simply a shortened version of my last name.
-        </p>
-        <p>
-          I began studying <strong>Software Engineering</strong> in 2022. Beyond my
-          formal education, I completed a semester-long <strong
-            >Ruby on Rails Web Developer</strong
-          > bootcamp in 2023.
-        </p>
+      <ul class="row g-4 list-unstyled">
+        {
+          projects.map((project) => (
+            <li class="col-md-6 col-lg-4">
+              <article class="h-100 border rounded p-4">
+                <header class="mb-3">
+                  <h3>{project.title}</h3>
+                </header>
 
-        <div class="m-2 my-4 p-3 border">
-          <h3>The Learning Process</h3>
-          <p class="text-muted">
-            I often pass hours researching things I already know, thinking, <em
-              >"Maybe I am doing it wrong?"</em
-            > or <em>"I should double-check this..."</em> This curiosity leads me
-            to deepen my knowledge, learn new things, and bring out the best in my
-            work.
-          </p>
-        </div>
+                {/* Placeholder // Image Example*/}
+                {/* <div
+                  class="bg-light rounded mb-3 w-100"
+                  style="aspect-ratio: 16/9;"
+                /> */}
+                {/* <img
+                  src=""
+                  alt=""
+                  class="img-fluid mb-3"
+                  style="aspect-ratio: 16/9;"
+                /> */}
 
-        <p>
-          I started this journey thinking, <em
-            >"The career name sounds so cool, complex, and meaningful—I really
-            want to study this!"</em
-          >
-          Coming from a technical accounting background, I barely knew how to turn
-          on a machine. My first college assignment was to "Make a game with the PyGame
-          framework based on an SDG." So I was like <em>"..."</em>
-        </p>
-      </div>
+                <p class="small text-muted mb-4 flex-grow-1">
+                  {project.description}
+                </p>
 
-      <aside class="col-lg-3 order-1 order-lg-2">
-        <div class="m-2 p-3 pt-0 border">
-          <p class="text-center my-2">
-            <strong>Alejandro Jeronimo Azamar</strong>
-          </p>
+                <ul class="list-unstyled d-flex flex-wrap gap-2 mb-3">
+                  {project.tags.map((tag) => (
+                    <li class="badge border text-secondary py-1 px-2">{tag}</li>
+                  ))}
+                </ul>
 
-          <figure>
-            <img
-              class="img-fluid text-center"
-              src="https://github.com/zama15.png"
-              alt="GitHub Profile picture of Zama"
-            />
-
-            <figcaption class="mt-2 text-muted text-center">
-              <small>My GitHub Avatar</small>
-            </figcaption>
-          </figure>
-
-          <dl class="row mb-0">
-            <dt class="col-5">Nationality</dt>
-            <dd class="col-7">Mexican</dd>
-
-            <dt class="col-5">Education</dt>
-            <dd class="col-7">Universidad de Colima</dd>
-          </dl>
-        </div>
-      </aside>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="small"
+                  aria-label={`View ${project.title} source code on GitHub`}
+                >
+                  View on GitHub
+                  <i class="bi bi-box-arrow-up-right ms-1" />
+                </a>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
-    <section class="mb-4">
-      <div class="pb-2 mb-2">
-        <h2>Most Recent Projects</h2>
+    <section class="py-5">
+      <h2>About Me</h2>
 
-        <hr />
-      </div>
+      <hr />
 
-      <p class="text-muted mb-4">
-        Most of these projects were for my college coursework, but I loved
-        working on all of them. I <strong
-          >never worked with the same team twice</strong
-        >, which made the experience fulfilling and helped me develop the soft
-        skills necessary for this field.
+      <p class="lead mb-4">
+        I am Alejandro Jeronimo Azamar, though I usually go by Zama—a shortened
+        version of my last name.
       </p>
 
-      <div class="row row-cols-1 row-cols-md-3">
-        <div class="col">
-          <h3>University Repository</h3>
-          <p class="small">
-            A centralized web/mobile app where students can manage their
-            projects and professors can oversee them using an RBAC security
-            methodology. I was in charge of the backend, architecture design,
-            and database management.
-          </p>
-
-          <ul class="list-unstyled d-flex flex-wrap gap-3 small">
-            <li>Backend</li>
-            <li>Architecture</li>
-            <li>DB Management</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3>Android SPA App</h3>
-          <p class="small">
-            A mobile app for spas to register their menus and users to schedule
-            appointments. Supported real-time calendars and map visualization. I
-            acted as a full-stack developer, designing views, backend logic, and
-            cloud database management.
-          </p>
-
-          <ul class="list-unstyled d-flex flex-wrap gap-3 small">
-            <li>Full-Stack</li>
-            <li>UI/UX</li>
-            <li>Cloud DB</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3 class="h5 card-title">Custom PHP Framework</h3>
-          <p class="small">
-            Custom Framework from scratch. Built with it a forum where users
-            manage posts and admins oversee content. I led my team through the
-            entire process using software management, best practices, and
-            methodologies.
-          </p>
-
-          <ul class="list-unstyled d-flex flex-wrap gap-3 small">
-            <li>PHP</li>
-            <li>Leadership</li>
-            <li>Best Practices</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="pb-2 mb-2">
-        <h2>Skills & Tools</h2>
-
-        <hr />
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <h3>Technologies</h3>
-
-          <ul class="list-unstyled mt-3 ms-2">
-            <li class="p-2">
-              <strong>Linux:</strong> Learned by installing different distros, managing
-              servers, and writing scripts. One of my favorite hobbies.
-            </li>
-            <li class="p-2">
-              <strong>Git:</strong> Inspired by highly proficient peers, I pushed
-              myself to make version control one of my most robust capabilities.
-            </li>
-            <li class="p-2">
-              <strong>Documentation:</strong> I believe strong, clear documentation
-              allows anyone to understand a project without dive too deeply into the
-              code.
-            </li>
-          </ul>
-        </div>
-
-        <div class="col-md-4">
-          <h3>Languages</h3>
-
-          <dl class="row mt-3 ms-2">
-            <dt class="col-4 p-2">Spanish</dt>
-            <dd class="col-8 p-2">Native</dd>
-
-            <dt class="col-4 p-2">English</dt>
-            <dd class="col-8 p-2">B2 (Cambridge)</dd>
-          </dl>
-        </div>
-      </div>
+      <article>
+        <h3>The Learning Process</h3>
+        <p class="text-muted mb-0">
+          I often spend hours researching, thinking, "Maybe this could be
+          improved?" or "I should double-check this..." This curiosity leads me
+          to deepen my knowledge, learn new things, and bring out the best in my
+          work.
+        </p>
+      </article>
     </section>
   </main>
 </BaseLayout>

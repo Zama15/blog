@@ -1,11 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import { ROUTES } from "../../lib/constants";
 import { getAllTags } from "../../lib/data";
 
 const allTags = await getAllTags();
+
+const title = "Browse Posts by Topic Tags";
+const description =
+  "Browse comprehensive list of blog tags to easily find post, coding tutorials, and learnings on specific programming topics.";
+const keywords =
+  "technical blog tags, explore blog by topic, programming categories, software development tags, tech article directory, coding topic index";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} keywords={keywords}>
   <main class="container">
     <h1>Tags</h1>
     <hr />
@@ -13,7 +21,7 @@ const allTags = await getAllTags();
     <nav class="navbar navbar-expand">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ps-3">
-          <a href="/blog/daily"> Random Post </a>
+          <a href={ROUTES.BLOG_DAILY}> Random Post </a>
         </li>
       </ul>
     </nav>
@@ -22,7 +30,7 @@ const allTags = await getAllTags();
       {
         allTags.map((tag) => (
           <li>
-            <a href={`/tags/${tag}`}>#{tag}</a>
+            <a href={`${ROUTES.TAGS}/${tag}`}>#{tag}</a>
           </li>
         ))
       }

@@ -1,9 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Blog Statistics";
+const description =
+  "View statistics for blog, including total posts, topics covered, and recent update timestamps. Data fetched dynamically via API.";
+const keywords =
+  "blog stats, blog statistics, live post count, blog topics data, dynamic blog data, api driven statistics";
 ---
 
-<BaseLayout>
-  <!-- <main class="container d-flex justify-content-center"> -->
+<BaseLayout title={title} description={description} keywords={keywords}>
   <main class="container">
     <div class="row">
       <img

@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 
+import { ROUTES } from "../../lib/constants";
 import { getAllTags, getPostsByTag } from "../../lib/data";
 
 export async function getStaticPaths() {
@@ -20,9 +21,13 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+
+const title = `Explore #${tag} Posts`;
+const description = `Explore technical learnings and in-depth blog posts about ${tag}. Discover hands-on tutorials, developer insights, and coding tips.`;
+const keywords = `${tag} tutorials, learn ${tag}, ${tag} technical articles, ${tag} developer tips, tech blog ${tag}, coding learnings, software development`;
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} keywords={keywords}>
   <main class="container">
     <h1><code>#{tag}</code> Posts</h1>
     <hr />
@@ -30,10 +35,10 @@ const { posts } = Astro.props;
     <nav class="navbar navbar-expand">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ps-3">
-          <a href="/tags">Explore by tags</a>
+          <a href={ROUTES.TAGS}>Explore by tags</a>
         </li>
         <li class="nav-item ps-3">
-          <a href="/blog/daily"> Random Post </a>
+          <a href={ROUTES.BLOG_DAILY}> Random Post </a>
         </li>
       </ul>
     </nav>

@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
+import { ROUTES } from "../lib/constants";
+
 interface Props {
   post: CollectionEntry<"learnings">;
 }
@@ -13,7 +15,7 @@ const { slug, title, description, date, tags, draft } = post.data;
   <header class="row">
     <h2 class="col-12 col-md-8 h5">
       {draft && <mark class="me-2">DRAFT</mark>}
-      <a href={`/blog/${slug}`}>{title}</a>
+      <a href={`${ROUTES.BLOG}/${slug}`}>{title}</a>
     </h2>
 
     <nav class="col-12 col-md-4 p-0 navbar navbar-expand">
@@ -21,7 +23,7 @@ const { slug, title, description, date, tags, draft } = post.data;
         {
           tags.map((tag) => (
             <li class="nav-item ps-3">
-              <a href={`/tags/${tag}`}>#{tag}</a>
+              <a href={`${ROUTES.TAGS}/${tag}`}>#{tag}</a>
             </li>
           ))
         }

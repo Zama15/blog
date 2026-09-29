@@ -1,0 +1,100 @@
+{
+  "name": "Zama15 - Blog",
+  "short_name": "Zama15 Blog",
+  "description": "Developer blog and portfolio.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "ltr",
+  "lang": "en",
+
+  "theme_color": "#212529",
+  "background_color": "#ffffff",
+
+  "icons": [
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "About",
+      "short_name": "About",
+      "description": "Portfolio; Learn about me",
+      "url": "/about",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Read my blog posts",
+      "url": "/blog",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Tags",
+      "short_name": "Tags",
+      "description": "Search between tags used in my posts",
+      "url": "/tags",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "short_name": "Stats",
+      "description": "Badge info that show the blog stats",
+      "url": "/stats",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    }
+  ]
+}

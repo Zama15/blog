@@ -1,4 +1,5 @@
 ---
+import { ROUTES } from "../lib/constants";
 import { getRecentPosts, getPopularTags } from "../lib/data";
 
 const recentPosts = await getRecentPosts();
@@ -12,7 +13,7 @@ const popularTags = await getPopularTags();
       recentPosts.map((post) => (
         <li class="nav-item mb-2">
           {post.data.draft && <mark class="me-2">DRAFT</mark>}
-          <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+          <a href={`${ROUTES.BLOG}/${post.data.slug}`}>{post.data.title}</a>
         </li>
       ))
     }
@@ -23,7 +24,7 @@ const popularTags = await getPopularTags();
     {
       popularTags.map((tag) => (
         <li class="nav-item mb-2">
-          <a href={`/tags/${tag}`}>#{tag}</a>
+          <a href={`${ROUTES.TAGS}/${tag}`}>#{tag}</a>
         </li>
       ))
     }

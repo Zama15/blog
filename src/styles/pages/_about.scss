@@ -1,14 +1,22 @@
 @use "../vendors/bootstrap" as bs;
 
-.about {
-  &-me {
-    aside {
-      width: 100%;
-      max-width: 400px;
+.timeline-item {
+  border-left-color: var(--bs-body-color) !important;
 
-      @include bs.media-breakpoint-up(lg) {
-        width: 300px;
-      }
-    }
+  // TIMELINE DOT
+  &::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: var(--bs-body-bg);
+    border: 2px solid var(--bs-body-color);
+    border-radius: 50%;
+    left: -8px;
+  }
+
+  &:last-child {
+    border-left-color: transparent !important;
+    padding-bottom: 0 !important;
   }
 }

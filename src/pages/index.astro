@@ -1,26 +1,60 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { ROUTES } from "../lib/constants";
+
+const title = "Developer Portfolio & Technical Knowledge Base";
+const description =
+  "Discover my digital workspace. Explore my professional engineering portfolio, technical skills, development log, and workflow guides for developers.";
+const keywords =
+  "developer portfolio, technical knowledge base, engineering projects, software development log, technical notes, developer workflow guides";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description} keywords={keywords}>
   <main class="container">
-    <h1>Hi <code>ヾ(^ ∇ ^)</code>, Zama here!!!</h1>
+    <header>
+      <h1>Hi <code>ヾ(^ ∇ ^)</code></h1>
+      <p class="lead text-muted">Welcome to my digital workspace.</p>
+    </header>
+
     <hr />
 
-    <section>
-      <h2>This is my Portfolio</h2>
-      <p>
-        Go checkout <a href="/about">/about</a> where I talk about me, my work, skills,
-        and experiences.
-      </p>
-    </section>
+    <div class="row g-4">
+      <section class="col-md-6">
+        <article class="h-100 border rounded p-4">
+          <header class="mb-3">
+            <h2>Portfolio</h2>
+          </header>
 
-    <section>
-      <h2>It is also a Blog</h2>
-      <p>
-        Go checkout <a href="/blog">/blog</a> where are my learnings, notes, and guides
-        I made for myself. I will be glad if they help you.
-      </p>
-    </section>
+          <p class="text-muted mb-4 flex-grow-1">
+            Explore my professional trajectory, technical skills, and the
+            engineering projects I have built.
+          </p>
+
+          <a href={ROUTES.ABOUT} aria-label="Navigate to my portfolio page">
+            about
+            <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </article>
+      </section>
+
+      <section class="col-md-6">
+        <article class="h-100 border rounded p-4">
+          <header class="mb-3">
+            <h2>Knowledge Base</h2>
+          </header>
+
+          <p class="text-muted mb-4 flex-grow-1">
+            Access my development log, technical notes, and the guides I
+            maintain for my workflow.
+          </p>
+
+          <a href={ROUTES.BLOG} aria-label="Navigate to my blog and notes">
+            blog
+            <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </article>
+      </section>
+    </div>
   </main>
 </BaseLayout>

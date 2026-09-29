@@ -2,35 +2,140 @@
 interface Props {
   title: string;
   description: string;
+  keywords: string;
+  author: string;
   image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const faviconVersion = "1.1.0";
 
-// - image: Optional social sharing image
-// TODO: Investigate how this work and improve it, the image part
-const { title, description, image = "/favicon.png" } = Astro.props;
+const {
+  title,
+  description,
+  keywords,
+  author,
+  image = "/favicon.png",
+} = Astro.props;
+
+const ogImage = new URL(image, Astro.url);
+const siteUrl = Astro.site;
 ---
 
+<!-- ===== CRITICAL METADATA ===== -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover"
+/>
+<meta name="description" content={description} />
+<meta name="title" content={title} />
 <meta name="generator" content={Astro.generator} />
 
+<!-- ===== SEO & INDEXING ===== -->
+<meta
+  name="robots"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+
+<!-- Language & Localization -->
+<meta name="language" content="en" />
+
+<!-- ===== THEME & BRANDING ===== -->
+<meta
+  name="theme-color"
+  content="#ffffff"
+  media="(prefers-color-scheme: light)"
+/>
+<meta
+  name="theme-color"
+  content="#212529"
+  media="(prefers-color-scheme: dark)"
+/>
+<meta name="color-scheme" content="light dark" />
+<meta name="apple-mobile-web-app-title" content="Zama15 Blog" />
+<meta name="application-name" content="Zama15 Blog" />
+
+<!-- ===== FAVICONS ===== -->
+<!-- Modern SVG favicon with theme support (primary) -->
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href={`/favicon.svg?v=${faviconVersion}`}
+/>
+
+<!-- PNG fallback for specific sizes -->
+<link
+  rel="icon"
+  type="image/png"
+  sizes="96x96"
+  href={`/favicon-96x96.png?v=${faviconVersion}`}
+/>
+
+<!-- Legacy browsers -->
+<link rel="shortcut icon" href={`/favicon.ico?v=${faviconVersion}`} />
+
+<!-- Apple devices -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href={`/apple-touch-icon.png?v=${faviconVersion}`}
+/>
+
+<!-- Safari pinned tab (minimal design) -->
+<link
+  rel="mask-icon"
+  href={`/favicon.svg?v=${faviconVersion}`}
+  color="#212529"
+/>
+
+<!-- ===== WEB APP & PWA ===== -->
+<link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}`} />
+
+<!-- ===== CANONICAL ===== -->
 <link rel="canonical" href={canonicalURL} />
 
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
-
+<!-- ===== SOCIAL & OG TAGS ===== -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Zama15 Blog" />
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author,
+    url: siteUrl,
+    image: ogImage.toString(),
+    description: description,
+    jobTitle: "Developer",
+    sameAs: ["https://github.com/zama15", "https://linkedin.com/in/zama15"],
+  })}
+/>
+
+<!-- ===== PRECONNECT & DNS-PREFETCH (Performance) ===== -->
+<!-- Add external services -->
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://cdn.example.com" /> -->
+
+<!-- ===== TITLE ===== -->
+<title>{title}</title>
