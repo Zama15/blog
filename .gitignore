@@ -26,3 +26,9 @@ pnpm-debug.log*
 
 # vercel files
 .vercel
+
+# local to ignore files
+local/
+CLAUDE.md
+.claude
+.pnpm-store

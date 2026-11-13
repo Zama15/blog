@@ -1,0 +1,7 @@
+# Build scripts of dependencies: none needed; the site builds with them skipped
+allowBuilds:
+  esbuild: false
+  sharp: false
+  "@parcel/watcher": false
+# Warn instead of auto-installing before every pnpm command
+verifyDepsBeforeRun: warn
