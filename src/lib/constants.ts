@@ -3,6 +3,7 @@ export const SITE_DESCRIPTION =
   "All about me, portfolio, my learnings and notes throu all my career.";
 export const SITE_KEYWORDS = "blog, portfolio, developer";
 export const SITE_AUTHOR = "Zama15";
+export const SITE_OG_IMAGE = "/og-default.png";
 
 export const ROUTES = {
   HOME: "/",

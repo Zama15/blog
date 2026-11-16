@@ -1,4 +1,6 @@
 ---
+import { SITE_OG_IMAGE } from "../lib/constants";
+
 interface Props {
   title: string;
   description: string;
@@ -8,14 +10,14 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const faviconVersion = "1.1.0";
+const faviconVersion = "1.2.0";
 
 const {
   title,
   description,
   keywords,
   author,
-  image = "/favicon.png",
+  image = SITE_OG_IMAGE,
 } = Astro.props;
 
 const ogImage = new URL(image, Astro.url);
