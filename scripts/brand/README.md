@@ -57,6 +57,9 @@ These are the numbers used in `assets/brand/logo-social.svg` (viewBox `0 0 62 24
 - Social card: export `assets/brand/logo-social.svg` on your machine as a 1200x630 PNG in the
   dark theme (`#212529` background) to `public/og-default.png`. The background must be opaque:
   keep `rx="0"` on the background rect, or the corners come out transparent.
+- Square crops: some previews (WhatsApp, compact LinkedIn and iMessage views) crop the card to
+  its central 630x630 px. The word must fit inside it, which is why the inner `<svg>` of
+  `logo-social.svg` is `x="25%" width="50%"`: the word spans about x 351..849 of 1200.
 - Favicon set: upload `assets/brand/logo-mark.svg` to the favicon generator and copy the
   result into `public/`. Then bump `faviconVersion` in `src/components/BaseHead.astro` so
   browsers fetch the new files.
