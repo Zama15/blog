@@ -7,9 +7,9 @@ interface Props {
   keywords: string;
   author: string;
   image?: string;
+  noindex?: boolean;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const faviconVersion = "1.2.0";
 
 const {
@@ -18,7 +18,17 @@ const {
   keywords,
   author,
   image = SITE_OG_IMAGE,
+  noindex = false,
 } = Astro.props;
+
+// One public URL per page: no trailing slash, except the home page.
+const pathname = Astro.url.pathname;
+const canonicalPath =
+  pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+const canonicalURL = new URL(canonicalPath, Astro.site);
+const robots = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
 const ogImage = new URL(image, Astro.url);
 const siteUrl = Astro.site;
@@ -35,10 +45,7 @@ const siteUrl = Astro.site;
 <meta name="generator" content={Astro.generator} />
 
 <!-- ===== SEO & INDEXING ===== -->
-<meta
-  name="robots"
-  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-/>
+<meta name="robots" content={robots} />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="keywords" content={keywords} />
 <meta name="author" content={author} />
@@ -98,11 +105,11 @@ const siteUrl = Astro.site;
 <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}`} />
 
 <!-- ===== CANONICAL ===== -->
-<link rel="canonical" href={canonicalURL} />
+{!noindex && <link rel="canonical" href={canonicalURL} />}
 
 <!-- ===== SOCIAL & OG TAGS ===== -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+{!noindex && <meta property="og:url" content={canonicalURL} />}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
@@ -114,7 +121,7 @@ const siteUrl = Astro.site;
 
 <!-- Twitter / X Cards -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={Astro.url} />
+{!noindex && <meta name="twitter:url" content={canonicalURL} />}
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
