@@ -13,6 +13,8 @@ export const ROUTES = {
   BLOG_DAILY: "/blog/daily",
   TAGS: "/tags",
   STATS: "/stats",
+  RSS: "/rss.xml",
+  LLMS: "/llms.txt",
 } as const;
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];
