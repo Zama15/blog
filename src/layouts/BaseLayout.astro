@@ -19,6 +19,9 @@ interface Props {
   author?: string;
   image?: string;
   noindex?: boolean;
+  type?: "website" | "article";
+  publishedTime?: Date;
+  tags?: string[];
 }
 
 const {
@@ -28,6 +31,9 @@ const {
   author = SITE_AUTHOR,
   image,
   noindex,
+  type,
+  publishedTime,
+  tags,
 } = Astro.props;
 ---
 
@@ -41,6 +47,9 @@ const {
       author={author}
       image={image}
       noindex={noindex}
+      type={type}
+      publishedTime={publishedTime}
+      tags={tags}
     />
   </head>
   <body>

@@ -3,7 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import PostSidebar from "../components/PostSidebar.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-import { ROUTES } from "../lib/constants";
+import { ROUTES, SITE_AUTHOR } from "../lib/constants";
 import type { MarkdownHeading } from "astro";
 
 interface Props {
@@ -20,7 +20,14 @@ const { title, description, date, tags, keywords, draft, headings } =
   Astro.props;
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  type="article"
+  publishedTime={date}
+  tags={tags}
+>
   <div class="container">
     <div class="row">
       <main class="col-lg-8">
@@ -34,6 +41,8 @@ const { title, description, date, tags, keywords, draft, headings } =
               <time datetime={date.toISOString()}>
                 {date.toDateString()}
               </time>
+              {" · by "}
+              <a href={ROUTES.ABOUT} rel="author">{SITE_AUTHOR}</a>
             </p>
 
             <hr />
